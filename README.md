@@ -46,3 +46,10 @@ $ docker run --rm -p 81:5000 blockchain
 $ docker run --rm -p 82:5000 blockchain
 $ docker run --rm -p 83:5000 blockchain
 ```
+
+5. Jenkins setup:
+In github: 
+go to repo ==> settings ==>webhook==>add webhooks
+Add in webhook from Jenkins
+for example: http://myserver.com:8080/github-webhook/
+
