@@ -1,5 +1,6 @@
 import hashlib
 import json
+import unittest
 from unittest import TestCase
 def load_src(name, fpath):
     import os, imp
