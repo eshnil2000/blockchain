@@ -106,3 +106,9 @@ class TestHashingAndProofs(BlockchainTestCase):
 
         assert len(new_hash) == 64
         assert new_hash == self.blockchain.hash(new_block)
+
+suite = unittest.TestLoader().loadTestsFromTestCase(TestBlocksAndTransactions)
+#suite = unittest.TestLoader().loadTestsFromTestCase(TestMining)
+
+unittest.TextTestRunner(verbosity=4).run(suite) 
+
