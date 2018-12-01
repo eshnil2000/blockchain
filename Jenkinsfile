@@ -10,7 +10,7 @@ pipeline {
             steps {
                 sh 'python --version' 
                 sh 'pip install -r requirements.txt'
-                sh 'python test/test_blockchain.py'
+                sh 'python tests/test_blockchain.py'
             }
         }
         stage('Deploy') { 
