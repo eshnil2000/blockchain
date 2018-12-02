@@ -51,5 +51,5 @@ $ docker run --rm -p 83:5000 blockchain
 In github: 
 go to repo ==> settings ==>webhook==>add webhooks
 Add in webhook from Jenkins
-for example: http://myserver.com:8080/github-webhook/
+for example: http://myserver.com:8080/github-webhook/, replace with your server address
 
