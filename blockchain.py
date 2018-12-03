@@ -6,6 +6,8 @@ from uuid import uuid4
 
 import requests
 from flask import Flask, jsonify, request
+from flask_cors import CORS
+
 
 
 class Blockchain:
@@ -193,6 +195,7 @@ class Blockchain:
 
 # Instantiate the Node
 app = Flask(__name__)
+CORS(app)
 
 # Generate a globally unique address for this node
 node_identifier = str(uuid4()).replace('-', '')
