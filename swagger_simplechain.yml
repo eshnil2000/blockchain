@@ -1,0 +1,58 @@
+swagger: "2.0"
+info:
+  description: "blockchain"
+  version: "1.0.0"
+  title: "blockchain"
+  termsOfService: "xx"
+  
+host: "blockchain.dappsuni.com:5000"
+basePath: "/"
+
+schemes:
+
+- "http"
+paths:
+  /chain:
+    get:
+      tags:
+      - "chain"
+      summary: "Finds chain"
+      description: "get chain"
+      operationId: "getChain"
+      produces:
+      - "application/json"
+      
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Chain"
+        400:
+          description: "Invalid status value"
+  
+definitions:
+  
+  Chain:
+    type: "object"
+    properties:
+      index:
+        type: "integer"
+      previous_hash:
+        type: "string"
+      proof:
+        type: "integer"
+      timestamp:
+        type: "number"
+      transactions:
+        type: "array"
+        items:
+          type: "object"
+          properties:
+            amount:
+              type: "integer"
+            recipient:
+              type: "string"
+            sender: 
+              type: "string"
