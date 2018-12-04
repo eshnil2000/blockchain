@@ -3,7 +3,7 @@ info:
   description: "blockchain"
   version: "1.0.0"
   title: "blockchain"
-  termsOfService: "xx"
+
   
 host: "blockchain.dappsuni.com:5000"
 basePath: "/"
@@ -11,14 +11,70 @@ basePath: "/"
 schemes:
 
 - "http"
+
 paths:
-  /chain:
+
+  /nodes/register:
+    post:
+      tags:
+        - "new node"
+      summary: "register new node"
+      description: ""
+      operationId: "postNewNode"
+      consumes:
+      - "application/json"
+      
+      produces:
+      - "application/json"
+      
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "nodes that needs to be added"
+        required: true
+        schema:
+          $ref: "#/definitions/Nodes"
+      responses:
+        405:
+          description: "Invalid input"
+        200:
+          description: "successful operation"
+
+  /transactions/new:
+    post:
+      tags:
+        - "new tx"
+      summary: "create new transaction"
+      description: ""
+      operationId: "postNewTransaction"
+      consumes:
+      - "application/json"
+      
+      produces:
+      - "application/json"
+      
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "transaction that needs to be added"
+        required: true
+        schema:
+          $ref: "#/definitions/SingleTransactionItem"
+      responses:
+        405:
+          description: "Invalid input"
+        200:
+          description: "successful operation"
+          
+
+
+  /mine:
     get:
       tags:
-      - "chain"
-      summary: "Finds chain"
-      description: "get chain"
-      operationId: "getChain"
+      - "mine"
+      summary: "Mines the block"
+      description: ""
+      operationId: "getMineBlock"
       produces:
       - "application/json"
       
@@ -32,27 +88,74 @@ paths:
         400:
           description: "Invalid status value"
   
-definitions:
+  /chain:
+    get:
+      tags:
+      - "chain"
+      summary: "Gets the chain"
+      description: ""
+      operationId: "getChain"
+      produces:
+      - "application/json"
+      
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+          
+            $ref: "#/definitions/Chain"
+        400:
+          description: "Invalid status value"
   
-  Chain:
+definitions:
+  Nodes:
     type: "object"
-    properties:
-      index:
-        type: "integer"
-      previous_hash:
-        type: "string"
-      proof:
-        type: "integer"
-      timestamp:
-        type: "number"
-      transactions:
+    properties: 
+      nodes:
         type: "array"
         items:
-          type: "object"
-          properties:
-            amount:
-              type: "integer"
-            recipient:
-              type: "string"
-            sender: 
-              type: "string"
+          type: "string"
+  
+  SingleTransactionItem:
+    type: "object"
+    properties: 
+      sender:
+        type: "string"
+      recipient:
+        type: "string"
+      amount:
+        type: "number"
+  
+  Transaction:
+      type: "array"
+      items: 
+        $ref: "#/definitions/SingleTransactionItem"
+  
+  SingleChainItem:
+    type: "object"
+    properties: 
+      index: 
+        type: "number"
+      previous_hash: 
+        type: "string"
+      proof: 
+        type: "number"
+      timestamp: 
+        type: "number"
+      transactions: 
+        type: "array"
+        items: 
+          $ref: "#/definitions/Transaction"
+    
+  Chain:
+    required: 
+    - "chain"
+    - "length"
+    properties: 
+      chain: 
+        type: "array"
+        items:
+          $ref: "#/definitions/SingleChainItem"
+          
+      length: 
+        type: "number"
