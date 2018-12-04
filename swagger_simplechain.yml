@@ -5,7 +5,7 @@ info:
   title: "blockchain"
 
   
-host: "blockchain.dappsuni.com:5000"
+host: "blockchain.dappsuni.com:5001"
 basePath: "/"
 
 schemes:
@@ -13,7 +13,26 @@ schemes:
 - "http"
 
 paths:
-
+  
+  /nodes/resolve:
+    get:
+      tags:
+      - "resolve"
+      summary: "resolve the chain"
+      description: ""
+      operationId: "resolveChain"
+      produces:
+      - "application/json"
+      
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+          
+            $ref: "#/definitions/Resolution"
+        400:
+          description: "Invalid status value"
+  
   /nodes/register:
     post:
       tags:
@@ -108,6 +127,17 @@ paths:
           description: "Invalid status value"
   
 definitions:
+  Resolution:
+    type: "object"
+    properties: 
+      new_chain:
+        type: "array"
+        items:
+          $ref: "#/definitions/Chain"
+      message:
+        type: "string"
+
+
   Nodes:
     type: "object"
     properties: 
@@ -115,6 +145,7 @@ definitions:
         type: "array"
         items:
           type: "string"
+
   
   SingleTransactionItem:
     type: "object"
@@ -159,3 +190,5 @@ definitions:
           
       length: 
         type: "number"
+  
+  
