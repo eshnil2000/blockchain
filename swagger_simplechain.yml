@@ -5,7 +5,7 @@ info:
   title: "blockchain"
 
   
-host: "blockchain.dappsuni.com:5001"
+host: "yourapiserver.com"
 basePath: "/"
 
 schemes:
