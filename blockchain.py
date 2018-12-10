@@ -323,7 +323,7 @@ if __name__ == '__main__':
     port = args.port
 
     app.config.from_object(Config())
-
+    app.config['SCHEDULER_TIMEZONE']='utc'
     scheduler = APScheduler()
     scheduler.init_app(app)
     scheduler.start()
