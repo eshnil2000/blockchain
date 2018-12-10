@@ -8,26 +8,26 @@ import requests
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 
-import flask_apscheduler 
-from flask_apscheduler import APScheduler
+# import flask_apscheduler 
+# from flask_apscheduler import APScheduler
 
-class Config(object):
-    JOBS = [
-        {
-            'id': 'faucet',
-            'func': 'blockchain:fill_faucet',
-            'args': (1, 2),
-            'trigger': 'interval',
-            'seconds': 2
-        }
-    ]
+# class Config(object):
+#     JOBS = [
+#         {
+#             'id': 'faucet',
+#             'func': 'blockchain:fill_faucet',
+#             'args': (1, 2),
+#             'trigger': 'interval',
+#             'seconds': 2
+#         }
+#     ]
 
-    SCHEDULER_API_ENABLED = True
+#     SCHEDULER_API_ENABLED = True
 
 
-def fill_faucet(a, b):
-    response=requests.get("http://127.0.0.1:5000/mine")
-    print('background mining to fill faucet')
+# def fill_faucet(a, b):
+#     response=requests.get("http://127.0.0.1:5000/mine")
+#     print('background mining to fill faucet')
 
 
 
@@ -324,10 +324,8 @@ if __name__ == '__main__':
 
     app.config.from_object(Config())
 
-    scheduler = APScheduler()
-    # it is also possible to enable the API directly
-    # scheduler.api_enabled = True
-    scheduler.init_app(app)
-    scheduler.start()
+    # scheduler = APScheduler()
+    # scheduler.init_app(app)
+    # scheduler.start()
 
     app.run(host='0.0.0.0', port=port)
