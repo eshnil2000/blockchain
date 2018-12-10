@@ -9,25 +9,25 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 
 import flask_apscheduler 
-# from flask_apscheduler import APScheduler
+from flask_apscheduler import APScheduler
 
-# class Config(object):
-#     JOBS = [
-#         {
-#             'id': 'faucet',
-#             'func': 'blockchain:fill_faucet',
-#             'args': (1, 2),
-#             'trigger': 'interval',
-#             'seconds': 2
-#         }
-#     ]
+class Config(object):
+    JOBS = [
+        {
+            'id': 'faucet',
+            'func': 'blockchain:fill_faucet',
+            'args': (1, 2),
+            'trigger': 'interval',
+            'seconds': 2
+        }
+    ]
 
 #     SCHEDULER_API_ENABLED = True
 
 
-# def fill_faucet(a, b):
-#     response=requests.get("http://127.0.0.1:5000/mine")
-#     print('background mining to fill faucet')
+def fill_faucet(a, b):
+    response=requests.get("http://127.0.0.1:5000/mine")
+    print('background mining to fill faucet')
 
 
 
