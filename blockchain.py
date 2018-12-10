@@ -322,10 +322,10 @@ if __name__ == '__main__':
     args = parser.parse_args()
     port = args.port
 
-    #app.config.from_object(Config())
+    app.config.from_object(Config())
 
-    # scheduler = APScheduler()
-    # scheduler.init_app(app)
-    # scheduler.start()
+    scheduler = APScheduler()
+    scheduler.init_app(app)
+    scheduler.start()
 
     app.run(host='0.0.0.0', port=port)
