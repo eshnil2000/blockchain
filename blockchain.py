@@ -8,6 +8,27 @@ import requests
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 
+import flask_apscheduler 
+from flask_apscheduler import APScheduler
+
+class Config(object):
+    JOBS = [
+        {
+            'id': 'faucet',
+            'func': 'blockchain:fill_faucet',
+            'args': (1, 2),
+            'trigger': 'interval',
+            'seconds': 2
+        }
+    ]
+
+    SCHEDULER_API_ENABLED = True
+
+
+def fill_faucet(a, b):
+    response=requests.get("http://127.0.0.1:5000/mine")
+    print('background mining to fill faucet')
+
 
 
 class Blockchain:
@@ -137,7 +158,7 @@ class Blockchain:
             'recipient': recipient,
             'amount': amount,
         })
-
+        #print('new transaction initiated')
         return self.last_block['index'] + 1
 
     @property
@@ -300,5 +321,13 @@ if __name__ == '__main__':
     parser.add_argument('-p', '--port', default=5000, type=int, help='port to listen on')
     args = parser.parse_args()
     port = args.port
+
+    app.config.from_object(Config())
+
+    scheduler = APScheduler()
+    # it is also possible to enable the API directly
+    # scheduler.api_enabled = True
+    scheduler.init_app(app)
+    scheduler.start()
 
     app.run(host='0.0.0.0', port=port)
