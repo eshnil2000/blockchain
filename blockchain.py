@@ -18,7 +18,7 @@ class Config(object):
             'func': 'blockchain:fill_faucet',
             'args': (1, 2),
             'trigger': 'interval',
-            'seconds': 2
+            'seconds': 43200
         }
     ]
 
