@@ -328,4 +328,4 @@ if __name__ == '__main__':
     scheduler.init_app(app)
     scheduler.start()
 
-    app.run(host='0.0.0.0', port=port)
+    app.run(host='0.0.0.0', port=port,use_reloader=True, use_debugger=True, use_evalex=True)
