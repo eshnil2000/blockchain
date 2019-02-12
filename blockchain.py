@@ -324,6 +324,7 @@ if __name__ == '__main__':
 
     app.config.from_object(Config())
     app.config['SCHEDULER_TIMEZONE']='utc'
+    app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
     scheduler = APScheduler()
     scheduler.init_app(app)
     scheduler.start()
