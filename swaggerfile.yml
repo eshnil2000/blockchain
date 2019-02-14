@@ -3,16 +3,15 @@ info:
   description: blockchain
   version: 1.0.0
   title: blockchain
-host: brtt.chainapp.live:10000
+host: 'brtt.chainapp.live:10000'
 basePath: /
 schemes:
   - http
 paths:
-  
   /nodes/resolve:
     get:
       tags:
-        - mine
+        - Resolve Node
       summary: Resolves nodes
       description: ''
       operationId: nodeResolve
@@ -23,14 +22,12 @@ paths:
           description: successful operation
           schema:
             type: object
-            
         '400':
           description: Invalid resolution
-  
   /nodes/register:
     post:
       tags:
-        - new node
+        - Register node
       summary: register new node
       description: ''
       operationId: postRegisterNode
@@ -50,11 +47,10 @@ paths:
           description: successful operation
         '405':
           description: Invalid input
-  
   /transactions/new:
     post:
       tags:
-        - new tx
+        - New Transaction
       summary: create new transaction
       description: ''
       operationId: postNewTransaction
@@ -77,7 +73,7 @@ paths:
   /mine:
     get:
       tags:
-        - mine
+        - Mine
       summary: Mines the block
       description: ''
       operationId: getMineBlock
@@ -95,7 +91,7 @@ paths:
   /chain:
     get:
       tags:
-        - chain
+        - Get Chain
       summary: Gets the chain
       description: ''
       operationId: getChain
@@ -108,17 +104,14 @@ paths:
             $ref: '#/definitions/Chain'
         '400':
           description: Invalid status value
-
 definitions:
-
   RegisterNodeItem:
     type: object
     properties:
       nodes:
         type: array
-        items: 
+        items:
           type: string
-          
   SingleTransactionItem:
     type: object
     properties:
