@@ -52,5 +52,5 @@ for example: http://myserver.com:8080/github-webhook/, replace with your server 
 ### go to repo/settings/ webhooks/ add new webhook: http://proxy.chainapp.live:8085/github-webhook/
 ### Get webhook from jenkins (settings/ Manage Jenkins’ -> ‘Configure System’. Make sure the path to git is correctly set, and choose ‘Manually manage hook URLs” under the ‘Github Web Hook’ section. ==> Reregister hooks
 ### First we need to install the GitHub Integration Plugin, this will give us the ability to configure Jenkins to use our Github repository.
-### Add server ssh keys to github settings
+### Add server ssh keys to github settings, not required though
 
