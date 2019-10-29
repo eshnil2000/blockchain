@@ -48,3 +48,7 @@ go to repo ==> settings ==>webhook==>add webhooks
 Add in webhook from Jenkins
 for example: http://myserver.com:8080/github-webhook/, replace with your server address
 
+# Automatically trigger Jenkins build
+### go to repo/settings/ webhooks/ add new webhook: http://proxy.chainapp.live:8085/github-webhook/
+### Get webhook from jenkins (settings/ Manage Jenkins’ -> ‘Configure System’. Make sure the path to git is correctly set, and choose ‘Manually manage hook URLs” under the ‘Github Web Hook’ section. ==> Reregister hooks
+
