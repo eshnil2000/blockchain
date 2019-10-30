@@ -54,3 +54,28 @@ for example: http://myserver.com:8080/github-webhook/, replace with your server 
 ### First we need to install the GitHub Integration Plugin, this will give us the ability to configure Jenkins to use our Github repository.
 ### Add server ssh keys to github settings, not required though
 
+# Nginx-server integration
+*Jenkinsfile2 incorporates random subdomain generation for each container launched via Jenkins, on the nginx-server docker network (assuming nginx-proxy container has been launched on this network)
+
+### generate random number: 
+```
+def UU_ID
+
+node {
+  UU_ID = sh(script: "date +%s",returnStdout: true).trim()
+}
+
+pipeline {
+```
+
+### assign random subdomain
+```
+stage('Deploy') { 
+            agent {
+                docker {
+                    
+                    image 'python:3.6-alpine' 
+                    args '-p 5000 --network nginx-proxy --expose 5000 -e VIRTUAL_HOST='+UU_ID+'.proxy.chainapp.live -e VIRTUAL_PORT=5000  '
+                }
+            }
+```
